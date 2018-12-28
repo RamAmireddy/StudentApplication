@@ -10,7 +10,26 @@ include 'db.php';
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
+<script type="text/javascript" language="javascript">
 
+window.onload = function() {
+    document.getElementById("Button6").onmouseover = function()
+    {
+        this.style.backgroundColor = "#9933ff";
+    }
+
+    document.getElementById("Button6").onmouseout = function()
+    {
+        this.style.backgroundColor = "#9999ff";
+    }
+}
+
+
+</script>
+table{
+    table-layout: fixed;
+    width: 200px;
+}
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -38,7 +57,7 @@ button:hover {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+ 
   cursor: pointer;
 }
 
@@ -152,8 +171,8 @@ span.psw {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  font-size: 14px;
+ 
   cursor: pointer;
 }
 * {
@@ -229,12 +248,12 @@ a {
 <div>
 <table class="table">
   <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>RollNo</th>
-    <th>Branch</th>
-    <th>Edit</th>
-    <th>delete</th>
+    <th width= "50px" style="text-align:center">ID</th>
+    <th width= "100px" style="text-align:center">Name</th>
+    <th width= "100px" style="text-align:center">RollNo</th>
+    <th width= "100px" style="text-align:center">Branch</th>
+    <th width= "100px" style="text-align:center">Edit</th>
+    <th width= "100px" style="text-align:center">delete</th>
   </tr>
   <?php
   if(!isset($_GET['page']))
@@ -253,36 +272,37 @@ a {
     while($row = mysqli_fetch_array($res))
 {
 echo "<tr>";
-echo "<td >" . $row['id'] . "</td>";
-echo "<td >" . $row['name'] . "</td>";
-echo "<td >" . $row['email'] . "</td>";
-echo "<td >" . $row['branch'] . "</td>";
+echo "<td width= '50px' style='text-align:center'><br>" . $row['id'] . "</td>";
+echo "<td width= '100px' style='text-align:center'><br>" . $row['name'] . "</td>";
+echo "<td width= '100px' style='text-align:center'><br>". $row['email'] . "</td>";
+echo "<td width= '100px' style='text-align:center'><br>" . $row['branch'] . "</td>";
 $rowid=$row['id'];
 ?>
-<td>
-  <input type="submit" onclick="document.getElementById('id01').style.display='block';" style="width:auto;" class="button" value="Edit">
-
- <div id="id01" class="modal">
+<td width= '100px'>
+    <p style='text-align:center'>
+  <input    type="submit" onclick="document.getElementById('<?php echo  $rowid ?>').style.display='block'; margin-left: 50px;" style="width:auto;border-radius: 12px;white-space:pre;" class="button" value="Edit">
+  </p>
+ <div id="<?php echo  $rowid ?>" class="modal">
   
   <form class="modal-content animate" action="update.php" method="post">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('<?php echo  $rowid ?>').style.display='none'" class="close" title="Close Modal">&times;</span>
       <!--<img src="img_avatar2.png" alt="Avatar" class="avatar">-->
     </div>
 
     <div class="container">
     <label for="studenID"><b>Student ID</b></label><br>
-    <input type="text" id="sId" name="uid" value=<?php echo $row['id'];?> readonly ><br>
+    <input type="text" id="sId" name="uid" value=<?php echo  $rowid ?> readonly ><br>
       <label for="uname"><b>Name</b></label><br>
-      <input type="text" placeholder="Enter name" name="name" value=<?php echo $row['name']; ?> required><br>
+      <input type="text" placeholder="Enter name" name="uname" value=<?php echo $row['name']; ?> required><br>
 
       <label for="email"><b>Email</b></label><br>
-      <input type="text" placeholder="Enter email" name="email" value=<?php echo $row['email']; ?> required><br>
+      <input type="text" placeholder="Enter email" name="uemail" value=<?php echo $row['email']; ?> required><br>
       <label for="branch"><b>Branch</b></label><br>
-      <input type="text" placeholder="Enter branch" name="branch" value=<?php echo $row['branch']; ?> required><br>
+      <input type="text" placeholder="Enter branch" name="ubranch" value=<?php echo $row['branch']; ?> required><br>
         
       <input type="submit" class="button" name="update" value="submit" >
-      <input type="submit" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" value="Cancel">
+      <input type="button" onclick="document.getElementById('<?php echo  $rowid ?>').style.display='none'" class="cancelbtn" value="Cancel">
     </div>
 
   </form>
@@ -297,7 +317,7 @@ $rowid=$row['id'];
 
 
 <?php
-echo "<td ><a onClick=\"javascript: return confirm('Please confirm deletion');\" href='index.php?delete=$rowid' class= 'button'>Delete</a></td>";
+echo "<td width= '100px' style='text-align:center' ><a onClick=\"javascript: return confirm('Please confirm deletion');\" href='index.php?delete=$rowid' class= 'cancelbtn' style='border-radius: 50%;text-decoration: none;'>Delete</a></td>";
 echo "</tr>";
 }
 echo "</table>";
@@ -315,7 +335,7 @@ if(isset($_GET['delete'])){
 
   ?>
   <div class="container">
-<ul id="1d03" align="center"style="position: relative;z-index:0">
+<ul  align="center"style="position: relative;z-index:0">
 <?php  
 $sqli = "SELECT * FROM students";  
 $rs_result = mysqli_query($con, $sqli);  
