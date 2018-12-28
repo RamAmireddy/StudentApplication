@@ -10,22 +10,6 @@ include 'db.php';
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
-<script type="text/javascript" language="javascript">
-
-window.onload = function() {
-    document.getElementById("Button6").onmouseover = function()
-    {
-        this.style.backgroundColor = "#9933ff";
-    }
-
-    document.getElementById("Button6").onmouseout = function()
-    {
-        this.style.backgroundColor = "#9999ff";
-    }
-}
-
-
-</script>
 table{
     table-layout: fixed;
     width: 200px;
@@ -45,11 +29,12 @@ button {
 }
 button:hover {
   opacity: 0.8;
+  background-color: #f44336;
 }
 
 /* Extra styles for the cancel button */
 .cancelbtn {
-    background-color: #f44336;
+    background-color:#4CAF50;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -59,6 +44,10 @@ button:hover {
   font-size: 16px;
  
   cursor: pointer;
+}
+.cancelbtn:hover {
+  opacity: 0.8;
+  background-color: #f44336;
 }
 
 /* Center the image and position the close button */
@@ -280,7 +269,7 @@ $rowid=$row['id'];
 ?>
 <td width= '100px'>
     <p style='text-align:center'>
-  <input    type="submit" onclick="document.getElementById('<?php echo  $rowid ?>').style.display='block'; margin-left: 50px;" style="width:auto;border-radius: 12px;white-space:pre;" class="button" value="Edit">
+  <input    type="submit" onclick="document.getElementById('<?php echo  $rowid ?>').style.display='block';" style="width:auto;border-radius: 12px;white-space:pre;" class="button" value="Edit">
   </p>
  <div id="<?php echo  $rowid ?>" class="modal">
   
